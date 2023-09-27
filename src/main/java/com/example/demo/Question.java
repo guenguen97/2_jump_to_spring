@@ -1,12 +1,11 @@
 package com.example.demo;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,5 +14,15 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(length = 1000)
+    private String subject;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
+    private LocalDateTime createDate;
+
+
 
 }
