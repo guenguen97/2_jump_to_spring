@@ -23,6 +23,9 @@ public class Question {
 
     private LocalDateTime createDate;
 
+    @Column(length =100)
+    private String name ;
+
 
 
 }
