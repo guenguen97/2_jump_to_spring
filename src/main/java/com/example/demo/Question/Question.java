@@ -1,11 +1,13 @@
-package com.example.demo;
+package com.example.demo.Question;
 
 
+import com.example.demo.Answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,6 +28,8 @@ public class Question {
     @Column(length =100)
     private String name ;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private List<Answer> answerList;
 
 
 }
