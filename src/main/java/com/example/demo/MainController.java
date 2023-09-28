@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @GetMapping("/")
-    @ResponseBody
-    public String hellow(){
-        return "hi";
+
+    public String root(){
+
+        return "redirect:/question/list";
     }
 }
