@@ -37,6 +37,15 @@ dependencies {
 	implementation 'org.commonmark:commonmark:0.21.0'
 
 
+	implementation 'org.springframework.boot:spring-boot-starter-websocket' // WebSocket Starter 추가
+	implementation 'org.webjars:webjars-locator-core'
+	implementation 'org.webjars:sockjs-client:1.5.1' // SockJS 클라이언트 추가
+	implementation 'org.webjars:stomp-websocket:2.3.4' // STOMP WebSocket 추가
+	implementation 'org.webjars:jquery:3.6.4' // jQuery 추가 (예제에서 사용)
+
+
+
+
 
 }
 

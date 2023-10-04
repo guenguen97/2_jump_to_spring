@@ -1,0 +1,53 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html>
+<head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+        <!-- sbb CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+
+
+    <title>실시간 채팅</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/webjars/stomp-websocket/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+<body>
+<div id="chat">
+    <div id="messages"></div>
+    <input type="text" id="message" placeholder="메시지 입력..." />
+    <button onclick="sendMessage()">보내기</button>
+</div>
+<script>
+    var stompClient = null;
+
+    function connect() {
+        var socket = new SockJS('/chat');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/topic/messages', function (message) {
+                showMessage(JSON.parse(message.body));
+            });
+        });
+    }
+
+    function sendMessage() {
+        var content = document.getElementById('message').value;
+        var sender = "사용자"; // 실제 발신자 이름으로 바꿀 수 있습니다
+        stompClient.send("/app/chat", {}, JSON.stringify({ content, sender }));
+    }
+
+    function showMessage(message) {
+        var messageElement = document.createElement('div');
+        messageElement.innerHTML = message.sender + ': ' + message.content;
+        document.getElementById('messages').appendChild(messageElement);
+    }
+
+    connect();
+</script>
+</body>
+</html>
