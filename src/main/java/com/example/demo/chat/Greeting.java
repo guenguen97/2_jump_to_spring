@@ -1,13 +1,15 @@
 package com.example.demo.chat;
 
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class Message {
+@Setter
+public class Greeting {
     private String content;
-    private String sender;
+
+    public Greeting(String content) {
+        this.content = content;
+    }
 }
